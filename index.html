@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WhatsApp Button with Contact Admin Popup</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* Container to group button and popup */
+  .whatsapp-container {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 10000;
+  }
+
+  /* Popup bubble above the button */
+  .contact-popup {
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 16px;
+    box-shadow:
+      0 6px 12px rgba(37, 211, 102, 0.35),
+      0 0 10px rgba(37, 211, 102, 0.5);
+    position: relative;
+    white-space: nowrap;
+    user-select: none;
+    cursor: default;
+    opacity: 0;
+    animation: fadeSlideUp 1s ease forwards;
+    animation-delay: 0.3s;
+  }
+
+  /* Small downward arrow for popup */
+  .contact-popup::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #128c7e transparent transparent transparent;
+  }
+
+  /* Floating WhatsApp button */
+  .whatsapp-button {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    border-radius: 50%;
+    box-shadow:
+      0 10px 15px rgba(37, 211, 102, 0.4),
+      0 0 20px rgba(37, 211, 102, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    animation: gentleJump 2.5s ease-in-out infinite;
+    transition: box-shadow 0.3s ease, transform 0.25s ease;
+  }
+
+  .whatsapp-button:hover,
+  .whatsapp-button:focus {
+    box-shadow:
+      0 14px 25px rgba(37, 211, 102, 0.55),
+      0 0 30px rgba(37, 211, 102, 0.8);
+    outline: none;
+    animation-play-state: paused;
+    transform: scale(1.15);
+  }
+
+  /* Smooth gentle vertical jump animation */
+  @keyframes gentleJump {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+
+  /* Popup fade and slide up */
+  @keyframes fadeSlideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* WhatsApp SVG icon style */
+  .whatsapp-icon {
+    width: 36px;
+    height: 36px;
+    fill: white;
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.15));
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* Visually hidden text for screen readers */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    border: 0 !important;
+  }
+</style>
+</head>
+<body>
+
+<div class="whatsapp-container" role="region" aria-label="WhatsApp contact">
+  <div class="contact-popup" aria-hidden="true">Contact Admin</div>
+  <a
+    href="https://wa.me/923326849518"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-button"
+    aria-label="Chat with us on WhatsApp at +92 3326849518"
+    title="Chat with us on WhatsApp"
+  >
+    <svg
+      class="whatsapp-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+      role="img"
+    >
+      <path d="M20.52 3.48a11.81 11.81 0 0 0-16.7 16.7l-1.93 5.1 5.3-1.85a11.82 11.82 0 0 0 13.34-19.95zm-2.03 13.86c-.28.78-1.6 1.48-2.35 1.57-.6.07-1.19.11-2.3-.38a7.62 7.62 0 0 1-4.38-4.41c-.48-1.27-.3-1.46.04-2.15.33-.66.88-.85 1.3-1.28.43-.42.52-.66.79-1.12.26-.44.13-.78-.07-1.1l-.7-1.41a.44.44 0 0 0-.7-.14c-.26.17-1 .94-1 .94s-.54.5-.7.98-.87 1.01-.87 1.01a4.76 4.76 0 0 0-.35 1.43c0 .44.13.9.3 1.29.25.6 1.69 3 4.22 4.4 1.15.65 2.2.8 3.09.59a5.82 5.82 0 0 0 2.3-1.22c.7-.64 1.2-1.18 1.34-1.31a1.63 1.63 0 0 0 .18-.97c-.04-.04-.17-.11-.39-.21z"/>
+    </svg>
+    <span class="sr-only">Chat with us on WhatsApp at +92 3326849518</span>
+  </a>
+</div>
+
+</body>
+</html>
+
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WISH MASTER  Bot </title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-primary: #3a82ff;
+      --color-primary-glow: #358cffcc;
+      --color-primary-light: #6ca0ff;
+      --color-text: #3a82ff;
+      --color-text-dark: #06114b;
+      --color-shadow: #3a82ff33;
+      --color-error: #ff3b3b;
+      --font-mono: 'JetBrains Mono', monospace;
+      --bot-message-color: #4ade80; /* tailwind green-400 */
+      --bot-message-bg: #063619; /* dark green bg */
+      --bot-message-border: #4ade80;
+      --user-message-color: #60a5fa; /* tailwind blue-400 */
+      --user-message-bg: #1e40af1a; /* blue opacity bg */
+      --user-message-border: #60a5fa;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: var(--font-mono);
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .app-container {
+      flex: 1 1 auto;
+      background: #030503;
+      border: 2px solid var(--color-primary);
+      box-shadow: 0 0 40px var(--color-primary-glow);
+      border-radius: 0;
+      padding: 30px 40px;
+      display: flex;
+      gap: 30px;
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .guide-container {
+      flex-shrink: 0;
+      width: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+      position: relative;
+      filter: drop-shadow(0 0 8px var(--color-primary-glow));
+      animation: glowPulse 3s ease-in-out infinite alternate;
+      z-index: 10;
+    }
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 6px var(--color-primary-glow)); }
+      50% { filter: drop-shadow(0 0 14px var(--color-primary-glow)); }
+    }
+    .guide-image {
+      width: 140px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1.5px solid var(--color-primary);
+      animation: blinkEyes 8s infinite ease-in-out;
+      background: url('https://placehold.co/140x180/png?text=Blackhat+Hacker+Avatar+hidden+face+blue+cyber') no-repeat center center;
+      background-size: cover;
+    }
+    @keyframes blinkEyes {
+      0%, 90%, 100% { filter: brightness(1); }
+      92%, 94%, 96% { filter: brightness(0.3); }
+    }
+
+    .speech-bubble {
+      background: var(--color-bg);
+      border: 2px solid var(--color-primary);
+      border-radius: 16px;
+      color: var(--color-primary-light);
+      font-size: 1rem;
+      line-height: 1.4;
+      padding: 18px 24px;
+      max-width: 320px;
+      margin-top: 24px;
+      position: relative;
+      text-shadow: 0 0 10px var(--color-primary-glow);
+      font-family: var(--font-mono);
+      box-shadow: inset 0 0 25px #065906cc;
+      user-select: text;
+      white-space: pre-wrap;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+    }
+    .speech-bubble::before {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 32px;
+      border-width: 14px 14px 0 14px;
+      border-style: solid;
+      border-color: var(--color-bg) transparent transparent transparent;
+      filter: drop-shadow(0 0 3px var(--color-primary-glow));
+    }
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 30px;
+      border-width: 16px 16px 0 16px;
+      border-style: solid;
+      border-color: var(--color-primary) transparent transparent transparent;
+    }
+
+    .name-container {
+      margin-top: 12px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--color-primary-light);
+      letter-spacing: 0.12em;
+      user-select: text;
+      text-shadow: 0 0 18px var(--color-primary-glow);
+      animation: nameGlow 2.4s ease-in-out infinite alternate;
+      font-family: var(--font-mono);
+    }
+    @keyframes nameGlow {
+      0% {
+        text-shadow: 0 0 8px var(--color-primary-light);
+        color: var(--color-primary-light);
+      }
+      100% {
+        text-shadow: 0 0 18px var(--color-primary-glow), 0 0 36px var(--color-primary-glow);
+        color: var(--color-primary);
+      }
+    }
+
+    .chat-container {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      max-height: 100%;
+      color: var(--color-primary);
+      overflow: hidden;
+    }
+    #chat {
+      background: #040604;
+      border: 2px solid var(--color-primary);
+      border-radius: 20px;
+      padding: 26px 30px;
+      overflow-y: auto;
+      flex-grow: 1;
+      font-size: 1.2rem;
+      letter-spacing: 0.03em;
+      text-shadow:
+        0 0 8px var(--color-primary-glow),
+        0 0 15px var(--color-primary-glow);
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-primary-glow) transparent;
+      user-select: text;
+      font-family: var(--font-mono);
+      white-space: pre-wrap;
+      margin-bottom: 12px;
+    }
+    #chat::-webkit-scrollbar {
+      width: 8px;
+    }
+    #chat::-webkit-scrollbar-thumb {
+      background-color: var(--color-primary-glow);
+      border-radius: 5px;
+    }
+    .message {
+      max-width: 72%;
+      padding: 16px 26px;
+      margin-bottom: 0;
+      border-radius: 30px;
+      box-shadow:
+        0 0 14px var(--color-primary-glow),
+        0 0 24px var(--color-primary-light) inset;
+      user-select: text;
+      text-shadow:
+        0 0 12px var(--color-primary);
+      animation: glitchFadeIn 0.5s ease forwards;
+      position: relative;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+    .message.bot {
+      align-self: flex-start;
+      border: 1.5px solid var(--bot-message-border);
+      background: var(--bot-message-bg);
+      color: var(--bot-message-color);
+      white-space: pre-wrap;
+    }
+    .message.user {
+      align-self: flex-end;
+      border: 1.5px solid var(--user-message-border);
+      background: var(--user-message-bg);
+      color: var(--user-message-color);
+      font-weight: 700;
+      white-space: pre-wrap;
+      text-shadow: none;
+    }
+
+    @keyframes glitchFadeIn {
+      0% {
+        opacity: 0;
+        text-shadow:
+          -2px 0 var(--color-primary),
+          2px 0 var(--color-primary);
+        filter: blur(1px);
+        transform: translateY(6px);
+      }
+      100% {
+        opacity: 1;
+        text-shadow:
+          0 0 14px var(--color-primary-glow);
+        filter: none;
+        transform: translateY(0);
+      }
+    }
+
+    .input-area {
+      margin-top: 12px;
+      display: flex;
+      gap: 20px;
+      user-select: text;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    textarea {
+      flex-grow: 1;
+      background: transparent;
+      border: 2.2px solid var(--color-primary-light);
+      border-radius: 18px;
+      padding: 20px 24px;
+      font-size: 1.2rem;
+      color: var(--color-primary-light);
+      font-family: var(--font-mono);
+      resize: vertical;
+      min-height: 140px;
+      max-height: 240px;
+      line-height: 1.5;
+      letter-spacing: 0.06em;
+      user-select: text;
+      outline-offset: 4px;
+      outline-color: transparent;
+      box-shadow:
+        inset 0 0 18px var(--color-primary-glow),
+        0 0 12px var(--color-primary-light);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
+    }
+    textarea:hover {
+      border-color: var(--color-primary);
+      box-shadow:
+        inset 0 0 26px var(--color-primary-glow),
+        0 0 20px var(--color-primary);
+      outline-color: var(--color-primary);
+    }
+    textarea:focus {
+      border-color: var(--color-primary);
+      outline-color: var(--color-primary-light);
+      box-shadow:
+        inset 0 0 32px var(--color-primary-glow),
+        0 0 32px var(--color-primary-light);
+    }
+    input[type="number"] {
+      width: 130px;
+      background: transparent;
+      border: 2.2px solid var(--color-primary-light);
+      border-radius: 18px;
+      padding: 18px 24px;
+      font-size: 1.2rem;
+      font-family: var(--font-mono);
+      color: var(--color-primary-light);
+      user-select: text;
+      text-align: center;
+      line-height: 1.4;
+      letter-spacing: 0.06em;
+      user-select: text;
+      outline-offset: 4px;
+      outline-color: transparent;
+      box-shadow:
+        inset 0 0 18px var(--color-primary-glow),
+        0 0 10px var(--color-primary-light);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
+    }
+    input[type="number"]:hover {
+      border-color: var(--color-primary);
+      box-shadow:
+        inset 0 0 28px var(--color-primary-glow),
+        0 0 22px var(--color-primary);
+      outline-color: var(--color-primary);
+    }
+    input[type="number"]:focus {
+      border-color: var(--color-primary);
+      outline-color: var(--color-primary-light);
+      box-shadow:
+        inset 0 0 34px var(--color-primary-glow),
+        0 0 32px var(--color-primary-light);
+    }
+    button {
+      background-color: transparent;
+      border: 2.5px solid var(--color-primary-light);
+      border-radius: 18px;
+      color: var(--color-primary-light);
+      font-weight: 900;
+      font-size: 1.2rem;
+      padding: 18px 36px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      user-select: none;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      text-shadow: 0 0 14px var(--color-primary-light);
+      box-shadow: 0 0 22px var(--color-primary-light);
+      filter: drop-shadow(0 0 14px var(--color-primary-glow));
+      transition: background-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+    }
+    button:hover:not(:disabled) {
+      background-color: var(--color-primary);
+      color: var(--color-text-dark);
+      text-shadow: 0 0 24px #a3b8ff;
+      box-shadow: 0 0 36px var(--color-primary-light), 0 0 48px var(--color-primary);
+      filter: drop-shadow(0 0 26px var(--color-primary-glow));
+    }
+    button:disabled {
+      border-color: #0a2a0a;
+      color: #0a2a0a;
+      cursor: not-allowed;
+      background-color: transparent;
+      box-shadow: none;
+      filter: none;
+      text-shadow: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="app-container" role="main" aria-labelledby="app-title">
+
+    <!-- Guide Character and Speech -->
+    <section class="guide-container" aria-label="Stylish programmer avatar and speech">
+      <img
+        id="guideImage"
+        class="guide-image"
+        alt="Stylish cartoon programmer boy with modern glasses and casual shirt, neon blue and purple tones with coding screen reflection"
+        aria-hidden="true"
+        src="https://scontent.fuet4-1.fna.fbcdn.net/v/t39.30808-6/474619483_122219355266071282_3854002365330699190_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=rOJbrniDcy8Q7kNvwEEbjV5&_nc_oc=Adn15oaOMYsq-a_fPuTxl5nTUaiRMAp8NkhW0ZzVdB2Ejdh4srSn9guKvQNhgcZM9zo&_nc_zt=23&_nc_ht=scontent.fuet4-1.fna&_nc_gid=hXlleYwQNAatOf-8XyO9FQ&oh=00_AfMljRfUoNYIMLRCWEW-mr_dMORVgRgzK0eJz5_wMg7vQw&oe=6855ED85"
+      />
+      <div class="speech-bubble" role="region" aria-live="polite" aria-atomic="true" id="guide-speech">
+        Welcome to Wish Master Bot! Paste your YouTube video URL(s) separated by commas or new lines.
+        <div class="name-container" aria-hidden="true">ADMIN NADEEM BUGTI</div>
+      </div>
+    </section>
+
+    <!-- Chat Area -->
+    <section class="chat-container">
+      <div id="chat" role="log" aria-live="polite" aria-relevant="additions" aria-atomic="false"></div>
+
+      <!-- Initial Input Form -->
+      <form id="user-form" class="input-area" role="form" aria-label="Paste video URLs or IDs form" autocomplete="off" novalidate>
+        <textarea
+          id="user-input"
+          aria-describedby="guide-speech"
+          placeholder="Paste YouTube video URLs or video IDs (comma or newline separated)"
+          rows="4"
+          spellcheck="false"
+          required
+          autofocus
+          aria-required="true"
+          autocorrect="off"
+          autocapitalize="none"
+        ></textarea>
+        <button type="submit" id="submit-btn" aria-label="Send video URLs or IDs">
+          <span class="material-icons" aria-hidden="true" style="font-size: 28px;">code</span> Execute
+        </button>
+      </form>
+
+      <!-- Number of videos to play form - initially hidden -->
+      <section id="row-count-section" class="input-area" style="display:none;" aria-label="Number of videos form">
+        <input
+          type="number"
+          id="row-count-input"
+          min="1"
+          max="100"
+          aria-label="Enter how many videos to play"
+          placeholder="Enter number (1-100)"
+          required
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="none"
+          aria-required="true"
+          style="flex-grow:0.3;"
+        />
+        <button type="button" id="row-count-submit-btn" aria-label="Submit number of videos to play" title="Deploy videos" style="flex-grow:0.7;">
+          <span class="material-icons" aria-hidden="true" style="font-size: 28px;">play_arrow</span> Deploy
+        </button>
+      </section>
+
+      <!-- Video grid container (hidden initially) -->
+      <section id="video-grid-container" aria-label="YouTube Videos Grid" hidden></section>
+    </section>
+
+  </main>
+
+  <script>
+    (() => {
+      const chatEl = document.getElementById('chat');
+      const formEl = document.getElementById('user-form');
+      const inputEl = document.getElementById('user-input');
+      const rowCountSection = document.getElementById('row-count-section');
+      const rowCountInput = document.getElementById('row-count-input');
+      const rowCountSubmitBtn = document.getElementById('row-count-submit-btn');
+      const videoGridContainer = document.getElementById('video-grid-container');
+      const guideSpeech = document.getElementById('guide-speech');
+
+      let videoIds = [];
+      let requestedCount = 0;
+      let typingTimeout;
+
+      function setGuideSpeech(text) {
+        guideSpeech.textContent = "";
+        let i = 0;
+        const interval = 25;
+        clearInterval(typingTimeout);
+        typingTimeout = setInterval(() => {
+          if (i < text.length) {
+            guideSpeech.textContent += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(typingTimeout);
+          }
+        }, interval);
+      }
+
+      function appendMessage(text, user=false, delay=0) {
+        if (delay > 0) {
+          setGuideSpeech("...");
+          setTimeout(() => {
+            appendMessage(text, user, 0);
+            if (!user) setGuideSpeech("");
+          }, delay);
+          return;
+        }
+        const div = document.createElement('div');
+        div.className = 'message ' + (user ? 'user' : 'bot');
+        div.textContent = text;
+        chatEl.appendChild(div);
+        chatEl.scrollTop = chatEl.scrollHeight;
+      }
+
+      function extractVideoId(urlOrId) {
+        urlOrId = urlOrId.trim();
+        try {
+          const url = new URL(urlOrId);
+          if (url.hostname === 'www.youtube.com' || url.hostname === 'youtube.com' || url.hostname === 'm.youtube.com') {
+            if (url.searchParams.has('v')) {
+              return url.searchParams.get('v').trim();
+            }
+          }
+          if (url.hostname === 'youtu.be') {
+            return url.pathname.slice(1).trim();
+          }
+          if (/^[a-zA-Z0-9_-]{11}$/.test(urlOrId)) return urlOrId;
+          return null;
+        } catch {
+          if (/^[a-zA-Z0-9_-]{11}$/.test(urlOrId)) return urlOrId;
+          return null;
+        }
+      }
+
+      function parseVideoIdsFromInput(input) {
+        const parts = input.split(/\s*[\n,]\s*/).filter(Boolean);
+        const ids = [];
+        for (const part of parts) {
+          const id = extractVideoId(part);
+          if (id) ids.push(id);
+        }
+        return ids;
+      }
+
+      function validateRowCount(n) {
+        const num = Number(n);
+        return Number.isInteger(num) && num >= 1 && num <= 100;
+      }
+
+      function askForRowCount() {
+        setGuideSpeech(`Detected ${videoIds.length} video${videoIds.length > 1 ? 's' : ''}. How many videos do you want to play? Enter a number between 1 and 100.`);
+        appendMessage(`Detected ${videoIds.length} video${videoIds.length > 1 ? 's' : ''}. Please enter how many videos to play (1-100).`, false, 600);
+        formEl.style.display = 'none';
+        rowCountSection.style.display = 'flex';
+        rowCountInput.value = '';
+        rowCountInput.min = '1';
+        rowCountInput.max = '100';
+        rowCountInput.focus();
+      }
+
+      function displayVideosAndFinish() {
+        let toPlayIds = [];
+        if (videoIds.length === 1) {
+          toPlayIds = Array(requestedCount).fill(videoIds[0]);
+        } else {
+          toPlayIds = Array.from({length: requestedCount}, (_, i) => videoIds[i % videoIds.length]);
+        }
+
+        videoGridContainer.innerHTML = "";
+        const videoGrid = document.createElement("div");
+        videoGrid.id = "video-grid";
+        videoGrid.style.display = "flex";
+        videoGrid.style.gap = "20px";
+        videoGrid.style.overflowX = "auto";
+        videoGrid.style.scrollBehavior = "smooth";
+
+        toPlayIds.forEach(id => {
+          const iframe = document.createElement("iframe");
+          iframe.width = "250";
+          iframe.height = "140";
+          iframe.src = `https://www.youtube.com/embed/${id}?rel=0&autoplay=1`;
+          iframe.title = "YouTube video player";
+          iframe.frameBorder = "0";
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          iframe.allowFullscreen = true;
+          iframe.style.flexShrink = "0";
+          videoGrid.appendChild(iframe);
+        });
+
+        videoGridContainer.appendChild(videoGrid);
+        videoGridContainer.hidden = false;
+        chatEl.scrollTop = chatEl.scrollHeight;
+
+        setGuideSpeech("All set! Videos are playing automatically where possible. Some browsers may block autoplay; you may need to click to start videos and count views.");
+      }
+
+      formEl.addEventListener("submit", e => {
+        e.preventDefault();
+        const val = inputEl.value.trim();
+        if (!val) return;
+
+        const ids = parseVideoIdsFromInput(val);
+        if (ids.length === 0) {
+          appendMessage("No valid YouTube video URLs or IDs detected. Please try again.");
+          setGuideSpeech("I couldn't find valid YouTube links or IDs. Please paste again.");
+          return;
+        }
+        videoIds = ids;
+        appendMessage(val, true);
+        askForRowCount();
+      });
+
+      rowCountSubmitBtn.addEventListener("click", () => {
+        const val = rowCountInput.value.trim();
+        if (!validateRowCount(val)) {
+          appendMessage("Please enter a valid number between 1 and 100.");
+          setGuideSpeech("Please enter a valid number between 1 and 100.");
+          rowCountInput.focus();
+          return;
+        }
+        requestedCount = parseInt(val, 10);
+        appendMessage(val, true);
+        appendMessage(`Preparing to play ${requestedCount} video${requestedCount > 1 ? 's' : ''}.`, false, 700);
+        rowCountSection.style.display = "none";
+
+        setGuideSpeech("Loading videos...");
+        setTimeout(displayVideosAndFinish, 800);
+      });
+
+      rowCountInput.addEventListener("keydown", e => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          rowCountSubmitBtn.click();
+        }
+      });
+      window.addEventListener("load", () => {
+        inputEl.focus();
+      });
+
+      setGuideSpeech("Welcome to Wish Master Bot! Paste your YouTube video URL(s) to complete youtube watch time \n\n[Admin Nadeem BUGTI]");
+      appendMessage("Welcome to Wish Master Bot!Please Uplaod 1 hour video to easily complete your watch .\n\n[Admin Nadeem BUGTI]");
+    })();
+  </script>
+</body>
+</html>
